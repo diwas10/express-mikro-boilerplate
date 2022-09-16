@@ -1,0 +1,66 @@
+#version: "3.8"
+#
+#volumes:
+#  postgres_data:
+#    driver: local
+#
+#services:
+#  postgres:
+#    image: postgres:14.1-alpine
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data
+#    environment:
+#      POSTGRES_PASSWORD: postgres
+#      POSTGRES_DB: m10labs_web
+#      POSTGRES_USER: postgres
+#    ports:
+#      - "5432:5432"
+#
+#  app:
+#    container_name: m10-web-back
+#    build:
+#      context: ./app
+#      dockerfile: Dockerfile
+#    stdin_open: true
+#    depends_on:
+#      - postgres
+#    env_file: ./.env.development
+#    ports:
+#      - "2058:2058"
+#    restart: always
+#    links:
+#      - postgres
+
+version: '3.8'
+services:
+  api:
+    container_name: m10-web-back
+    restart: always
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    command: yarn dev
+    volumes:
+      - .:/usr/src/app
+    env_file:
+      - ./.env.development
+    stdin_open: true
+
+  postgres:
+    container_name: postgres
+    image: postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/data/db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: m10_web_db
+    env_file:
+      - ./.env.development
+
+volumes:
+  postgres_data:

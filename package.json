@@ -1,0 +1,69 @@
+{
+  "name": "windy-chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.ts",
+  "scripts": {
+    "local": "cross-env NODE_ENV=local nodemon -L",
+    "dev": "cross-env NODE_ENV=development nodemon -L",
+    "start": "cross-env NODE_ENV=production node dist/src/server.js",
+    "docker": "docker compose up",
+    "prisma:gen": "prisma generate",
+    "migration": "mikro-orm migration:create",
+    "migrate": "mikro-orm migration:up",
+    "build": "tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./src -o ./dist/src && npm run post:build",
+    "post:build": "cp .env.* ./dist/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@mikro-orm/core": "^5.3.1",
+    "@mikro-orm/migrations": "^5.3.1",
+    "@mikro-orm/postgresql": "^5.3.1",
+    "@mikro-orm/reflection": "^5.3.1",
+    "@mikro-orm/sql-highlighter": "^1.0.1",
+    "bcryptjs": "^2.4.3",
+    "chalk": "4.1.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.13.2",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "envalid": "^7.3.1",
+    "express": "^4.18.1",
+    "express-async-errors": "^3.1.1",
+    "express-http-context": "^1.2.4",
+    "morgan": "^1.10.0",
+    "node-match-path": "^0.6.3",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.0",
+    "reflect-metadata": "^0.1.13",
+    "socket.io": "^4.5.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@mikro-orm/cli": "^5.3.1",
+    "@types/express": "^4.17.13",
+    "@types/morgan": "^1.9.3",
+    "@types/node": "^18.0.3",
+    "@types/passport": "^1.0.9",
+    "@types/passport-jwt": "^3.0.6",
+    "@types/uuid": "^8.3.4",
+    "nodemon": "^2.0.19",
+    "prettier": "^2.7.1",
+    "prisma": "^4.1.0",
+    "ts-node": "^10.8.2",
+    "tsconfig-paths": "^4.0.0",
+    "tslib": "^2.4.0",
+    "typescript": "^4.7.4"
+  },
+  "mikro-orm": {
+    "useTsNode": true,
+    "configPaths": [
+      "./src/config/micro-orm/mikro-orm.config.ts",
+      "./dist/config/micro-orm/mikro-orm.config.js"
+    ]
+  }
+}

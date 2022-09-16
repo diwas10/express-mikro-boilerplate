@@ -1,0 +1,16 @@
+import * as httpContext from 'express-http-context';
+
+export const generatePassword = (length = 6) => {
+	let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$';
+	let password = '';
+	for (let i = 0; i < length; i++) {
+		password += characters.charAt(
+			Math.floor(Math.random() * characters.length),
+		);
+	}
+	return password;
+};
+
+export const getContextUser=()=>{
+	return httpContext.get("user")
+}
