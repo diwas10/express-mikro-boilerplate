@@ -12,7 +12,8 @@
     "migration": "mikro-orm migration:create",
     "migrate": "mikro-orm migration:up",
     "build": "tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./src -o ./dist/src && npm run post:build",
-    "post:build": "cp .env.* ./dist/"
+    "post:build": "cp .env.* ./dist/",
+    "new": "plop"
   },
   "keywords": [],
   "author": "",
@@ -52,6 +53,7 @@
     "@types/passport-jwt": "^3.0.6",
     "@types/uuid": "^8.3.4",
     "nodemon": "^2.0.19",
+    "plop": "^3.1.1",
     "prettier": "^2.7.1",
     "prisma": "^4.1.0",
     "ts-node": "^10.8.2",

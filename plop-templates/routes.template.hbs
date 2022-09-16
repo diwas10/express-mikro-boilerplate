@@ -1,0 +1,15 @@
+import { Application } from 'express';
+import ValidationMiddleware from '../../middlewares/validation.middleware';
+import { {{pascalCase name}} } from './{{name}}.dto';
+import {{pascalCase name}}Controller from './{{name}}.controller';
+
+const {{name}}Routes = (app: Application) => {
+	const {{name}}Controller=new {{pascalCase name}}Controller();
+	app.route('/{{name}}/create').post(ValidationMiddleware({{pascalCase name}}), {{name}}Controller.create);
+	app.route('/{{name}}/update/:id').put(ValidationMiddleware({{pascalCase name}}), {{name}}Controller.update);
+	app.route('/{{name}}/delete/:id').delete({{name}}Controller.delete);
+	app.route('/{{name}}/list').get({{name}}Controller.findAll);
+	app.route('/{{name}}/:id').get({{name}}Controller.findOne);
+};
+
+export default {{name}}Routes;

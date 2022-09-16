@@ -1,0 +1,10 @@
+import { Singleton } from 'utils/decorators/singleton';
+import { SqlEntityRepository } from '@mikro-orm/knex';
+import { {{pascalCase name}}Entity } from './{{name}}.entity';
+
+@Singleton
+class {{pascalCase name}}Repository extends SqlEntityRepository<{{pascalCase name}}Entity>{
+
+}
+
+export default {{pascalCase name}}Repository;

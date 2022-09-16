@@ -1,0 +1,8 @@
+import { Entity, EntityRepositoryType, PrimaryKey, Property } from '@mikro-orm/core';
+import {{pascalCase name}}Repository from './{{name}}.repository';
+import { BaseEntity } from '../../orm/base.entity';
+
+@Entity({ tableName: '{{name}}', customRepository:() => {{pascalCase name}}Repository })
+export class {{pascalCase name}}Entity extends BaseEntity {
+	[EntityRepositoryType]?:{{pascalCase name}}Repository;
+}

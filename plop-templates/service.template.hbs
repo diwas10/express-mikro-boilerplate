@@ -1,0 +1,32 @@
+import { {{pascalCase name}} } from './{{name}}.dto';
+import HttpException from '@utils/exceptions/http.exception';
+import { hashPassword } from '@utils/bcrypt';
+import {{pascalCase name}}Repository from './{{name}}.repository';
+import { Singleton } from '@utils/decorators/singleton';
+import { {{pascalCase name}}Entity } from './{{name}}.entity';
+import { Mikro } from '../../app';
+import { getContextUser } from '@utils/utility';
+import { wrap } from '@mikro-orm/core';
+
+@Singleton
+class {{pascalCase name}}Service {
+	private readonly {{name}}Repository: {{pascalCase name}}Repository;
+	private readonly user: ContentUser;
+
+	constructor() {
+		this.{{name}}Repository = Mikro.em.getRepository({{pascalCase name}}Entity);
+		this.user = getContextUser();
+	}
+
+	findAll = async () => await this.{{name}}Repository.findAll();
+
+	findOne = async (id:string) => await this.{{name}}Repository.findOne({ id });
+
+	create = async ({{name}}Data: {{pascalCase name}}) => {};
+
+	update = async (id:string, {{name}}Data: {{pascalCase name}}) => {};
+
+	delete = async (id:string) => {}
+}
+
+export default {{pascalCase name}}Service;
